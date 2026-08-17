@@ -1,5 +1,8 @@
 # URSA orographic-lift adapter
 
+[![License: MIT](https://img.shields.io/badge/Code-MIT-yellow.svg)](LICENSE)
+[![Results: CC BY 4.0](https://img.shields.io/badge/Results-CC%20BY%204.0-lightgrey.svg)](results/LICENSE)
+
 URSA (Upstream-Ridge Sheltering Attenuation) is a deterministic,
 physics-guided adapter that adds upstream terrain history to fast
 orographic-lift estimators. It attenuates unsupported positive lift behind
@@ -95,3 +98,11 @@ not a claim of a data-free raw-to-result rerun. See
 Machine receipts retain historical internal schema strings because changing
 them would invalidate their hashes. Those strings are provenance identifiers,
 not model names used in the paper.
+
+## License
+
+Unless a directory states otherwise, the original software and documentation
+in this repository are licensed under the [MIT License](LICENSE). The original
+processed tables, manifests, and audit receipts under `results/` are licensed
+under [CC BY 4.0](results/LICENSE). Third-party raw datasets are not
+redistributed and remain subject to their source licenses.

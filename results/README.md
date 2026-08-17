@@ -39,3 +39,10 @@ Some original receipts contain absolute workstation paths. Those values are
 preserved because the files are hash-bound; they are provenance strings only
 and are not opened by the public verifier. Historical internal schema strings
 are retained for the same reason and are not paper-facing model labels.
+
+## License
+
+Except where accompanying metadata states otherwise, the original processed
+results and audit receipts in this directory are available under
+[CC BY 4.0](LICENSE). The cited third-party raw datasets are not redistributed
+and are not covered by this license.

@@ -4,6 +4,7 @@ title: "URSA Orographic-Lift Adapter"
 type: software
 version: 0.2.0
 date-released: 2026-08-17
+license: MIT
 authors:
   - family-names: Liu
     given-names: Haobo
@@ -13,6 +14,11 @@ authors:
     affiliation: "School of Aeronautic Science and Engineering, Beihang University"
 repository-code: "https://github.com/HaoboL/ursa-orographic-lift"
 url: "https://github.com/HaoboL/ursa-orographic-lift"
+abstract: >-
+  A deterministic, physics-guided adapter that adds upstream terrain history
+  to fast orographic-lift estimators, suppressing unsupported positive lift
+  behind upstream ridges while retaining a separate adverse-flow exposure
+  state for warning and accepted-support decisions.
 keywords:
   - orographic lift
   - terrain sheltering
