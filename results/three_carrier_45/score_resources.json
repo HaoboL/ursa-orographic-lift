@@ -1,0 +1,35 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-B",
+    "scripts/evaluate_ursa_v01_three_base45_four_arm_v1.py",
+    "score",
+    "--cache-root",
+    "results/ursa_v01_three_base45_four_arm_20260816/formal45_staged_exact_v01/cache",
+    "--output",
+    "results/ursa_v01_three_base45_four_arm_20260816/formal45_staged_exact_v01/result.json",
+    "--workers",
+    "16"
+  ],
+  "completed_utc": "2026-08-16T14:10:14.757100+00:00",
+  "elapsed_s": 3.0709180789999664,
+  "maximum_host_memory_some_avg10": 0.0,
+  "maximum_user_cgroup_some_avg10": 0.0,
+  "memory_events_delta": {
+    "high": 0,
+    "low": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_group_kill": 0,
+    "oom_kill": 0
+  },
+  "minimum_host_mem_available_bytes": 126426628096,
+  "peak_process_count": 17,
+  "peak_process_tree_rss_bytes": 2480906240,
+  "peak_user_cgroup_memory_current_bytes": 85439303680,
+  "return_code": 0,
+  "sample_count": 4,
+  "schema": "orocfd.process-tree-resource-monitor.v1",
+  "started_utc": "2026-08-16T14:10:11.686186+00:00",
+  "user_cgroup_pgscan_delta": 0
+}

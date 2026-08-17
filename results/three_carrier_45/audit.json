@@ -1,0 +1,45 @@
+{
+  "checks": [
+    {
+      "name": "formal_identity",
+      "passed": true
+    },
+    {
+      "max_absolute_error": 4.440892098500626e-16,
+      "name": "all_case_historical_endpoints",
+      "passed": true
+    },
+    {
+      "aggregate_max_absolute_error": 0.0,
+      "coverage_max_absolute_error": 0.0,
+      "name": "independent_case_to_group_aggregation",
+      "passed": true
+    },
+    {
+      "max_absolute_error": 1.1102230246251565e-16,
+      "name": "historical_raw_v2_aggregate_reproduction",
+      "passed": true
+    },
+    {
+      "name": "prepare_manifest_and_case_cache_hashes",
+      "passed": true
+    },
+    {
+      "name": "result_code_and_evidence_hashes",
+      "passed": true
+    },
+    {
+      "name": "no_failure_receipts",
+      "passed": true,
+      "paths": []
+    }
+  ],
+  "historical_path": "/media/liu/Book/CodexWorkspace/orographic-cfd-study/results/ursa_v2_three_base_45case_validation_v1/summary.json",
+  "historical_sha256": "6a44ae489fc5cd4227acc75c34549abd9d13f1d15614f8bd05aae6ee9e9c04f7",
+  "prepare_manifest_path": "/media/liu/Book/CodexWorkspace/orographic-cfd-study/results/ursa_v01_three_base45_four_arm_20260816/formal45_staged_exact_v01/cache/prepare_manifest.json",
+  "prepare_manifest_sha256": "d08367b7a95831da1f3d48b2e8c6520d4e141fd10395e673652e81daa3f58230",
+  "result_path": "/media/liu/Book/CodexWorkspace/orographic-cfd-study/results/ursa_v01_three_base45_four_arm_20260816/formal45_staged_exact_v01/result.json",
+  "result_sha256": "3d644833c39073e7b93c94d7dc7af594fdab5ab1271f1d2688b1ec07dbcc48f4",
+  "schema": "ursa.v01-three-base45-four-arm-independent-audit.v1",
+  "status": "pass"
+}

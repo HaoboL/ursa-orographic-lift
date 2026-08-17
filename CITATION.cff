@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the software repository and the associated article."
+title: "URSA Orographic-Lift Adapter"
+type: software
+version: 0.2.0
+date-released: 2026-08-17
+authors:
+  - family-names: Liu
+    given-names: Haobo
+    affiliation: "School of Aeronautic Science and Engineering, Beihang University"
+  - family-names: Li
+    given-names: Ke
+    affiliation: "School of Aeronautic Science and Engineering, Beihang University"
+repository-code: "https://github.com/HaoboL/ursa-orographic-lift"
+url: "https://github.com/HaoboL/ursa-orographic-lift"
+keywords:
+  - orographic lift
+  - terrain sheltering
+  - wind estimation
+  - route planning

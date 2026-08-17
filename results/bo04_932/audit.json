@@ -1,0 +1,132 @@
+{
+  "case_count": 932,
+  "checks": {
+    "accepted_support_row_transcription": "pass",
+    "all_case_cache_hashes": "pass",
+    "all_case_metrics": "pass",
+    "immutable_bindings": "pass",
+    "prepare_manifest": "pass",
+    "same_support_contrast_policy": "pass",
+    "two_level_594_group_macro_aggregate": "pass"
+  },
+  "legal_mae_contrasts_percent": {
+    "base_plus_E_to_base_plus_S_plus_E_same_support": -18.425171415571874,
+    "base_to_base_plus_S_full_support": -14.390631480051674
+  },
+  "recomputed_aggregate": {
+    "coverage": {
+      "terrain_group_macro_mean": 0.48278752805836145,
+      "terrain_group_percentiles": {
+        "p10": 0.22916000000000003,
+        "p25": 0.341725,
+        "p50": 0.48719999999999997,
+        "p75": 0.61695,
+        "p90": 0.7169375000000001
+      }
+    },
+    "models": {
+      "bo04": {
+        "base_only": {
+          "cell_count": 10000.0,
+          "count": 594,
+          "mae": 0.8094780038631246,
+          "positive_overprediction_mae": 0.33043684690233965,
+          "thresholds": {
+            "0.2": {
+              "accuracy": 0.8133617283950617,
+              "false_lift": 0.13557953142536477,
+              "recall": 0.8458521604579621
+            },
+            "0.5": {
+              "accuracy": 0.811122741301908,
+              "false_lift": 0.16764138608305273,
+              "recall": 0.8860428728991787
+            },
+            "1.0": {
+              "accuracy": 0.8474075196408529,
+              "false_lift": 0.14658742985409653,
+              "recall": 0.9247909666894379
+            }
+          }
+        },
+        "base_plus_E": {
+          "cell_count": 4827.875280583614,
+          "count": 594,
+          "mae": 0.57001613222878,
+          "positive_overprediction_mae": 0.33095144412356675,
+          "thresholds": {
+            "0.2": {
+              "accuracy": 0.8431714883945952,
+              "false_lift": 0.13473633870374638,
+              "recall": 0.9420842927375216
+            },
+            "0.5": {
+              "accuracy": 0.8210885016887685,
+              "false_lift": 0.16949344896759186,
+              "recall": 0.9583858908618603
+            },
+            "1.0": {
+              "accuracy": 0.8455789017922741,
+              "false_lift": 0.15017627996528896,
+              "recall": 0.9592226986257384
+            }
+          }
+        },
+        "base_plus_S": {
+          "cell_count": 10000.0,
+          "count": 594,
+          "mae": 0.6929890074151039,
+          "positive_overprediction_mae": 0.20332431315389338,
+          "thresholds": {
+            "0.2": {
+              "accuracy": 0.8346526094276094,
+              "false_lift": 0.09739067059483726,
+              "recall": 0.7902595252389812
+            },
+            "0.5": {
+              "accuracy": 0.8666982323232324,
+              "false_lift": 0.10338606902356903,
+              "recall": 0.8305423478803928
+            },
+            "1.0": {
+              "accuracy": 0.9070920454545455,
+              "false_lift": 0.08447425645342313,
+              "recall": 0.8871205448219293
+            }
+          }
+        },
+        "base_plus_S_plus_E": {
+          "cell_count": 4827.875280583614,
+          "count": 594,
+          "mae": 0.4649896827692145,
+          "positive_overprediction_mae": 0.21738754726610945,
+          "thresholds": {
+            "0.2": {
+              "accuracy": 0.8703061517467946,
+              "false_lift": 0.0933921312139066,
+              "recall": 0.8995782743234568
+            },
+            "0.5": {
+              "accuracy": 0.8797992864383611,
+              "false_lift": 0.10399252229701056,
+              "recall": 0.9215228992362574
+            },
+            "1.0": {
+              "accuracy": 0.9020266726202865,
+              "false_lift": 0.09192392533902112,
+              "recall": 0.9378493181730011
+            }
+          }
+        }
+      }
+    }
+  },
+  "result": {
+    "path": "/media/liu/Book/CodexWorkspace/orographic-cfd-study/results/ursa_v01_bo04_full932_four_arm_20260816/formal932_exact_v01/result.json",
+    "sha256": "4fbbc3dc5afb88c0384f620ac05128347bc2034e2a0bbf44d042df2959089252"
+  },
+  "schema": "ursa.v01-bo04-full932-four-arm-audit.v1",
+  "status": "pass",
+  "terrain_group_count": 594,
+  "verified_cache_receipt_ledger_sha256": "d3496842baf0524f0026b38a436e3b41a19fd44346536c93842b3a7e5fe29c0c"
+}

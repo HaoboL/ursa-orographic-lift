@@ -1,0 +1,36 @@
+{
+  "command": [
+    ".venv/bin/python",
+    "-B",
+    "scripts/run_ursa_v2_route_energy_rerun_v1.py",
+    "--formula-profile",
+    "public_v01",
+    "--freeze",
+    "results/ursa_v01_submission_freeze_20260815/freeze.json",
+    "--workers",
+    "12",
+    "--output",
+    "results/ursa_v01_route_energy_rerun_20260816/formal325_current_continuous_turn_v1/result.json"
+  ],
+  "completed_utc": "2026-08-16T15:44:59.458088+00:00",
+  "elapsed_s": 26.295939189993078,
+  "maximum_host_memory_some_avg10": 0.0,
+  "maximum_user_cgroup_some_avg10": 0.0,
+  "memory_events_delta": {
+    "high": 0,
+    "low": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_group_kill": 0,
+    "oom_kill": 0
+  },
+  "minimum_host_mem_available_bytes": 125167771648,
+  "peak_process_count": 13,
+  "peak_process_tree_rss_bytes": 2868617216,
+  "peak_user_cgroup_memory_current_bytes": 114119516160,
+  "return_code": 0,
+  "sample_count": 27,
+  "schema": "orocfd.process-tree-resource-monitor.v1",
+  "started_utc": "2026-08-16T15:44:33.162154+00:00",
+  "user_cgroup_pgscan_delta": 0
+}

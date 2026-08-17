@@ -11,6 +11,10 @@ dist/
 *.log
 *.out
 *.pdf
+*.tex
+*.bib
 third_party_data/
 raw_data/
-
+manuscript/
+paper/
+submission/

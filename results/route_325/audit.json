@@ -1,0 +1,44 @@
+{
+  "bindings": {
+    "audit_script": {
+      "path": "/media/liu/Book/CodexWorkspace/orographic-cfd-study/scripts/audit_ursa_v2_route_energy_rerun_v1.py",
+      "sha256": "83c7d0384a3ea19d51e952b7e3a0fdb753d70a6cdc5f29991aac0576422e2555"
+    },
+    "recursive_implementation": {
+      "/media/liu/Book/CodexWorkspace/orographic-cfd-study/scripts/audit_ursa_v2_route_energy_rerun_v1.py": "83c7d0384a3ea19d51e952b7e3a0fdb753d70a6cdc5f29991aac0576422e2555",
+      "/media/liu/Book/CodexWorkspace/orographic-cfd-study/scripts/ursa_progress_checkpoint_v1.py": "8cbb70c0f6324ed3d8422124baa83663dcc65d580f1451a1b004d27bd1265563",
+      "/media/liu/Book/CodexWorkspace/orographic-cfd-study/src/orographic_cfd/__init__.py": "85760f03629425095aef394e60f6225ffd449d2c9aa43728ec0b64eaef1aebcf",
+      "/media/liu/Book/CodexWorkspace/orographic-cfd-study/src/orographic_cfd/ursa_formal_manifest_v1.py": "7c3fcca8c7cb8601f9b870c02db50a4d89bb928acd3e059957b3d0c9572648a0",
+      "/media/liu/Book/CodexWorkspace/orographic-cfd-study/src/orographic_cfd/ursa_registered_panels_v1.py": "8ed298934decced678759e82da06ca0fef1603dc49123b8e5b2c0238b72d7d22"
+    },
+    "route_result": {
+      "path": "/media/liu/Book/CodexWorkspace/orographic-cfd-study/results/ursa_v01_route_energy_rerun_20260816/formal325_current_continuous_turn_v1/result.json",
+      "sha256": "d7cb09add419f9f0539e7e8d1fcd5c5ff152770ff0bdfeb1c3d2b8319eada8fd"
+    }
+  },
+  "checks": {
+    "all_cases_in_reexecuted_reference": true,
+    "all_reference_routes_independently_converged": true,
+    "all_reported_summaries_independently_recomputed": true,
+    "all_spacing_stable": true,
+    "both_reference_worlds": true,
+    "current_arms_only": true,
+    "exact_public_v01_formula_profile": true,
+    "historical_public_v01_formula_gate_325_of_325": true,
+    "map_reference_open_zero": true,
+    "no_formal_errors": true,
+    "primary_world_energy_denominators_complete": true,
+    "public_v01_diagnostic_gate_within_tolerance": true,
+    "public_v01_fallback_is_exact_identity": true,
+    "public_v01_formula_domain_300_fallback_25": true,
+    "reference_outputs_opened_once_after_selection": true,
+    "registered_route_strata": true,
+    "result_complete": true,
+    "schema_current": true,
+    "sensitivity_infeasibility_explicit_and_nonfatal": true,
+    "support_diagnostics_present": true,
+    "unique_registered_panel": true
+  },
+  "schema": "ursa.route-energy-rerun-audit.v2",
+  "status": "pass"
+}

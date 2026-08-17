@@ -1,0 +1,50 @@
+{
+  "rows": [
+    {
+      "E_identity": false,
+      "S_identity": false,
+      "case_id": "case_000006",
+      "diagnostic_gate": {
+        "diagnostic_absolute_errors": {
+          "masked_fraction_e_ge_0p05": 0.0,
+          "mean_e": 0.0,
+          "mean_s_retention_on_raw_positive": 0.0
+        },
+        "passed": true,
+        "source_result_sha256": "1c4d18f35dcbd5bf75d5891496d1b04b3d8f18f6d0dafb59340b22b87972fc62",
+        "tolerance": 1e-12
+      },
+      "diagnostics": {
+        "masked_fraction_e_ge_0p05": 0.204673721340388,
+        "mean_e": 0.04277167822873778,
+        "mean_s_retention_on_raw_positive": 0.5346574124850815
+      },
+      "formula_domain": true,
+      "ood_reason": null
+    },
+    {
+      "E_identity": true,
+      "S_identity": true,
+      "case_id": "case_000056",
+      "diagnostic_gate": {
+        "diagnostic_absolute_errors": {
+          "masked_fraction_e_ge_0p05": 0.0,
+          "mean_e": 0.0,
+          "mean_s_retention_on_raw_positive": 0.0
+        },
+        "passed": true,
+        "source_result_sha256": "1c4d18f35dcbd5bf75d5891496d1b04b3d8f18f6d0dafb59340b22b87972fc62",
+        "tolerance": 1e-12
+      },
+      "diagnostics": {
+        "masked_fraction_e_ge_0p05": null,
+        "mean_e": null,
+        "mean_s_retention_on_raw_positive": null
+      },
+      "formula_domain": false,
+      "ood_reason": "no V10 geometry for case_000056"
+    }
+  ],
+  "schema": "ursa.public-v01-route-formula-smoke.v1",
+  "status": "pass"
+}
