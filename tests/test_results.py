@@ -30,3 +30,15 @@ def test_published_results_recompute_from_case_rows():
     assert abs(changed["selected_reference_energy_j"] - 574706.2393130724) < 1.0e-9
     assert abs(changed["net_saving_j"] - 149875.9422186797) < 1.0e-9
     assert abs(changed["ratio_of_sums_saving_percent"] - 20.684464238665786) < 1.0e-12
+    tradeoff = report["route_608_tradeoff_v2"]
+    assert tradeoff["task_count"] == 608
+    assert tradeoff["terrain_group_count"] == 161
+    continuous = tradeoff["methods"]["continuous_attenuation"]
+    assert continuous["corrected_false_corridors"] == [29, 52]
+    assert continuous["abandoned_reference_valid_routes"] == [21, 406]
+    assert continuous["abandoned_valid_lift_opportunities"] == [3, 129]
+    assert continuous["hard_harm_count"] == 11
+    hard = tradeoff["methods"]["hard_warning"]
+    assert hard["corrected_false_corridors"] == [52, 52]
+    assert hard["abandoned_reference_valid_routes"] == [145, 406]
+    assert hard["hard_harm_count"] == 43

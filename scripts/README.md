@@ -3,8 +3,9 @@
 ## Portable release script
 
 `verify_published_results.py` is self-contained apart from NumPy and the JSON
-files committed under `results/`. It is the supported public command for
-checking the published aggregates.
+and CSV files committed under `results/`. It is the supported public command
+for checking the published aggregates, including the 608-task symmetric
+correction--opportunity audit.
 
 ## Archived research drivers
 

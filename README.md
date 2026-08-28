@@ -28,6 +28,8 @@ copies, and submission files are intentionally excluded.
   BO04, and WindNinja;
 - `results/bo04_932/`: 932 BO04 cases in 594 terrain groups;
 - `results/route_325/`: 325 continuous-turn route-selection tasks;
+- `results/route_608_tradeoff_v2/`: post-audit 608-task, 161-terrain-group
+  symmetric correction--opportunity audit with four frozen planning maps;
 - `scripts/verify_published_results.py`: one-command, row-level recomputation
   of the headline aggregates and checksums;
 - `REPRODUCIBILITY.md`: scope, commands, and raw-data boundary.
@@ -43,11 +45,19 @@ The compact results reproduce these registered comparisons without refitting:
 | 325 route tasks | route outcomes | 13 better / 306 same / 6 worse; 19 routes changed |
 | 325 route tasks | changed-route descriptive magnitude | 149.876 kJ net; 20.684% of changed raw-route energy, including all 6 unfavorable changes |
 | 325 route tasks | complete-denominator primary result | 1.398%; mean 461.157 J/task (paired-bootstrap 95% CI 92.096--939.752 J) |
+| 608-task stress test | hard warning: correction / valid-route abandonment / valid-lift abandonment | 52/52 / 145/406 / 39/129; 43 hard harms |
+| 608-task stress test | continuous attenuation: correction / valid-route abandonment / valid-lift abandonment | 29/52 / 21/406 / 3/129; 11 hard harms |
+| 608-task stress test | continuous finite gross benefit / harm | 617.71 / 62.91 kJ; corrected detours avoided median 419 m and 66 s |
 
-The changed-route statistic describes the magnitude of the policy-defined 19
-interventions. It does not replace the primary complete-denominator result,
-which retains all 325 tasks and assigns zero paired difference to the 306
-unchanged route decisions.
+The 325-task result is preserved as an earlier complete-denominator audit; it
+does not supply the current correction--opportunity conclusion. The later
+mechanism-conditioned panel explicitly measures both correction of a
+reference-false downstream corridor and abandonment of a reference-valid or
+verified-lift opportunity. The originally designated hard warning is rejected:
+its complete correction rate was purchased with 145 valid-route abandonments,
+39 valid-lift abandonments, and 43 hard harms. Continuous attenuation produced
+the best empirical balance among the four frozen maps, but is not presented as
+a deployment guarantee.
 
 ## Quick start
 

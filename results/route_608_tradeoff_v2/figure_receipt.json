@@ -1,0 +1,35 @@
+{
+  "derived_inputs": {
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/manuscript/ursa_v2_engineering_20260808/analysis/bo04_v2_tradeoff_20260828/data_profile.json": "1c6e5a387c4f74ec3f5cf764a04045658813cd00f87db78ad3f857b41a4043e9",
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/manuscript/ursa_v2_engineering_20260808/analysis/bo04_v2_tradeoff_20260828/exact_dem_group_tradeoff_profile.csv": "3ce2b8b03290442bc3ab18e78fa79a0ae6fadc803715f5b75cddf334419e1c1b",
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/results/ursa_bo04_downstream_challenge_v2/formal_analysis_v1/primary_tradeoff_table.csv": "7f7580bd9daf12cc42117be199143ceb32f58bf29696cbef612e7b261e28c927"
+  },
+  "elapsed_s": 2.488796559002367,
+  "figure_contract": {
+    "group_points": "exact-DEM group rates; missing denominators omitted rather than set to zero",
+    "intervals": "5000-resample exact-DEM cluster bootstrap, frozen analyzer outputs",
+    "operating_point_selection": "none; all four frozen methods displayed",
+    "raster_dpi": 600,
+    "size_inches": [
+      7.2,
+      6.0
+    ],
+    "split_panel": "confirmation and reserve shown without selecting the more favorable split",
+    "task_panel": "all nonzero finite comparisons; equivalent-zero and hard-transition counts printed separately",
+    "vector_pdf": true
+  },
+  "outputs": {
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/manuscript/ursa_v2_engineering_20260808/figures/fig15_bo04_v2_tradeoff.pdf": "d44d5d48dd2fd736d243bdb4608257614977696cf24144f0d96181c679256821",
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/manuscript/ursa_v2_engineering_20260808/figures/fig15_bo04_v2_tradeoff.png": "8d5568f689c723f1c98aea4332a9f2f0876de9d069f74500560147fbf28705c2",
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/manuscript/ursa_v2_engineering_20260808/figures/fig15_bo04_v2_tradeoff_grayscale.png": "209ef1e924c172d148ec6c71b604d497e4a9c23e945d89075b6ddfa573511aed",
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/manuscript/ursa_v2_engineering_20260808/figures/fig15_bo04_v2_tradeoff_preview.png": "d14ff444cb0850d840506eb730b21830feaa958dd8adc56079abde771772b886"
+  },
+  "receipt_sha256": "016d3ef9fe8a9723394f7810f36524bf25229e02c52b39cce872e5cc73ebfdf2",
+  "schema": "ursa.bo04-v2-tradeoff-figure-receipt.v1",
+  "source_files": {
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/results/ursa_bo04_downstream_challenge_v2/formal_analysis_v1/analysis_summary.json": "ee6d0cf3fc3f74657a5feb5c88e47e0ae8222bda3822866deeb2f20b961dc0a9",
+    "/media/liu/Book/CodexWorkspace/orographic-cfd-study/experiments/harm_w_active_worktree/results/ursa_bo04_downstream_challenge_v2/formal_analysis_v1/task_method_results.csv": "271f99b23255b8224e59c11b392098cb22863c8f92eb38f4d03820ae20b6c442"
+  },
+  "status": "complete_from_frozen_post_audit_v2_panel",
+  "visual_qa": []
+}

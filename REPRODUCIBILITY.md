@@ -46,6 +46,11 @@ case-level rows:
 5. separately sums the unrounded row-level energies for the policy-defined 19
    changed routes, reproducing 724.582181 kJ raw, 574.706239 kJ selected,
    149.875942 kJ net saving, and a descriptive changed-route ratio of 20.684464%.
+6. filters all 4,864 rows of the 608-task V2 package to the primary FuXi-$w$
+   world, verifies 608 tasks and 161 exact-DEM groups for each frozen map, and
+   rebuilds false-corridor correction, reference-valid and valid-lift
+   abandonment, finite gross benefit/harm, feasibility transitions, route
+   changes, and worst finite harm.
 
 No manuscript table is used as an input. A successful run prints a JSON record
 with `"status": "pass"`; any mismatch raises an error and returns a nonzero exit
@@ -79,6 +84,7 @@ The original runs avoided nested thread oversubscription:
 | 932-case preparation | 4 | 1 |
 | 932-case scoring | 16 | 1 |
 | 325-route evaluation | 12 | 1 |
+| 608-task V2 mission preparation/reference scoring | 16 | 1 |
 
 `OMP_NUM_THREADS`, `MKL_NUM_THREADS`, `OPENBLAS_NUM_THREADS`, and
 `NUMEXPR_NUM_THREADS` were set to `1` for multi-process runs. These settings and

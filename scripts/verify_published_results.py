@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+import csv
 import hashlib
 import json
 import math
@@ -33,6 +34,21 @@ FORMAL_RESULTS = {
         "audit": Path("results/route_325/audit.json"),
         "sha256": "d7cb09add419f9f0539e7e8d1fcd5c5ff152770ff0bdfeb1c3d2b8319eada8fd",
         "schema": "ursa.route-energy-rerun.v2",
+    },
+}
+
+ROUTE_608_FILES = {
+    "task_rows": {
+        "path": Path("results/route_608_tradeoff_v2/task_method_results.csv"),
+        "sha256": "271f99b23255b8224e59c11b392098cb22863c8f92eb38f4d03820ae20b6c442",
+    },
+    "summary": {
+        "path": Path("results/route_608_tradeoff_v2/analysis_summary.json"),
+        "sha256": "ee6d0cf3fc3f74657a5feb5c88e47e0ae8222bda3822866deeb2f20b961dc0a9",
+    },
+    "primary_table": {
+        "path": Path("results/route_608_tradeoff_v2/primary_tradeoff_table.csv"),
+        "sha256": "7f7580bd9daf12cc42117be199143ceb32f58bf29696cbef612e7b261e28c927",
     },
 }
 
@@ -398,6 +414,129 @@ def _verify_route(data: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _csv_bool(value: str) -> bool:
+    if value == "True":
+        return True
+    if value == "False":
+        return False
+    raise VerificationError(f"invalid CSV boolean {value!r}")
+
+
+def _verify_route_608(repository_root: Path) -> tuple[dict[str, Any], dict[str, str]]:
+    paths = {
+        name: repository_root / specification["path"]
+        for name, specification in ROUTE_608_FILES.items()
+    }
+    hashes: dict[str, str] = {}
+    for name, specification in ROUTE_608_FILES.items():
+        actual = _sha256(paths[name])
+        _require(actual == specification["sha256"], f"route_608 {name} SHA-256 differs: {actual}")
+        hashes[str(specification["path"])] = actual
+
+    with paths["task_rows"].open("r", encoding="utf-8", newline="") as handle:
+        all_rows = list(csv.DictReader(handle))
+    _require(len(all_rows) == 4864, f"route_608 row count: {len(all_rows)}")
+    rows = [row for row in all_rows if row["world_id"] == "fuxi_w"]
+    _require(len(rows) == 2432, f"route_608 FuXi-w row count: {len(rows)}")
+    methods = ("hard_warning", "continuous_attenuation", "matched_uniform", "s_only")
+    _require({row["method_id"] for row in rows} == set(methods), "route_608 method identities")
+    task_ids = {row["task_id"] for row in rows}
+    terrain_groups = {row["terrain_group_sha256"] for row in rows}
+    _require(len(task_ids) == 608, f"route_608 task count: {len(task_ids)}")
+    _require(len(terrain_groups) == 161, f"route_608 terrain group count: {len(terrain_groups)}")
+
+    summary = _load_json(paths["summary"])
+    _require(summary.get("status") == "complete_v2_tradeoff_analysis", "route_608 summary status")
+    _require(summary.get("schema") == "orocfd.ursa-bo04-downstream-challenge-analysis.v2", "route_608 summary schema")
+    stored = summary["summaries"]["fuxi_w"]["combined"]["all"]
+    registered = {
+        "hard_warning": (52, 145, 39, 454, 933178.5160185562, 1270696.7039193907, 43, 8, 244, 76477.97548177773),
+        "continuous_attenuation": (29, 21, 3, 486, 617709.3739304785, 62911.3797901836, 11, 5, 71, 15116.507628962936),
+        "matched_uniform": (26, 55, 5, 470, 565778.3124472314, 240720.23086787015, 27, 2, 106, 23915.94507012848),
+        "s_only": (7, 6, 2, 496, 95967.60101518214, 47253.53342295617, 1, 0, 14, 15116.507628962936),
+    }
+    output: dict[str, Any] = {}
+    for method in methods:
+        method_rows = [row for row in rows if row["method_id"] == method]
+        _require(len(method_rows) == 608, f"route_608 {method} row count")
+        _require(all(_csv_bool(row["numeric_gate_passed"]) for row in method_rows), f"route_608 {method} numerical gate")
+        false_count = sum(_csv_bool(row["reference_false_corridor"]) for row in method_rows)
+        corrected = sum(
+            _csv_bool(row["reference_false_corridor"])
+            and _csv_bool(row["false_corridor_correction"])
+            for row in method_rows
+        )
+        valid_count = sum(_csv_bool(row["reference_valid_route"]) for row in method_rows)
+        abandoned_valid = sum(_csv_bool(row["reference_valid_route_abandonment"]) for row in method_rows)
+        lift_count = sum(_csv_bool(row["raw_valid_lift_opportunity"]) for row in method_rows)
+        abandoned_lift = sum(_csv_bool(row["valid_lift_abandonment"]) for row in method_rows)
+        finite_delta = np.asarray(
+            [float(row["raw_minus_method_energy_j"]) for row in method_rows if row["raw_minus_method_energy_j"]],
+            dtype=np.float64,
+        )
+        gross_benefit = float(np.sum(finite_delta[finite_delta > 0.0]))
+        gross_harm = float(-np.sum(finite_delta[finite_delta < 0.0]))
+        hard_harm = sum(row["outcome"] == "hard_harm_method_reference_infeasible" for row in method_rows)
+        hard_benefit = sum(row["outcome"] == "hard_benefit_raw_reference_infeasible" for row in method_rows)
+        changed = sum(_csv_bool(row["method_left_raw_route"]) for row in method_rows)
+        worst_harm = float(max(0.0, -float(np.min(finite_delta))))
+        expected = registered[method]
+        for actual, target, label in (
+            (corrected, expected[0], "corrected false"),
+            (abandoned_valid, expected[1], "abandoned valid"),
+            (abandoned_lift, expected[2], "abandoned valid lift"),
+            (len(finite_delta), expected[3], "finite pair count"),
+            (gross_benefit, expected[4], "gross benefit"),
+            (gross_harm, expected[5], "gross harm"),
+            (hard_harm, expected[6], "hard harm"),
+            (hard_benefit, expected[7], "hard benefit"),
+            (changed, expected[8], "changed routes"),
+            (worst_harm, expected[9], "worst harm"),
+        ):
+            if isinstance(target, int):
+                _require(int(actual) == target, f"route_608 {method} {label}: {actual}")
+            else:
+                _close(float(actual), target, f"route_608 {method} {label}", atol=1.0e-8)
+        _require((false_count, valid_count, lift_count) == (52, 406, 129), f"route_608 {method} denominators")
+
+        pooled = stored[method]["pooled"]
+        for key, actual in (
+            ("false_corridor_correction_count", corrected),
+            ("reference_valid_route_abandonment_count", abandoned_valid),
+            ("valid_lift_abandonment_count", abandoned_lift),
+            ("finite_pair_count", len(finite_delta)),
+            ("gross_benefit_j", gross_benefit),
+            ("gross_harm_j", gross_harm),
+            ("hard_harm_count", hard_harm),
+            ("hard_benefit_count", hard_benefit),
+            ("route_change_count", changed),
+            ("worst_finite_harm_j", worst_harm),
+        ):
+            if isinstance(actual, (int, np.integer)):
+                _require(int(pooled[key]) == int(actual), f"route_608 summary {method}.{key}")
+            else:
+                _close(float(pooled[key]), float(actual), f"route_608 summary {method}.{key}", atol=1.0e-8)
+        output[method] = {
+            "corrected_false_corridors": [corrected, false_count],
+            "abandoned_reference_valid_routes": [abandoned_valid, valid_count],
+            "abandoned_valid_lift_opportunities": [abandoned_lift, lift_count],
+            "finite_gross_benefit_j": gross_benefit,
+            "finite_gross_harm_j": gross_harm,
+            "hard_harm_count": hard_harm,
+            "hard_benefit_count": hard_benefit,
+            "changed_route_count": changed,
+            "worst_finite_harm_j": worst_harm,
+        }
+    continuous = stored["continuous_attenuation"]
+    _require(continuous["cluster_bootstrap"]["resamples"] == 5000, "route_608 bootstrap count")
+    return {
+        "task_count": len(task_ids),
+        "terrain_group_count": len(terrain_groups),
+        "task_method_world_row_count": len(all_rows),
+        "methods": output,
+    }, hashes
+
+
 def verify_all(repository_root: Path = REPOSITORY_ROOT) -> dict[str, Any]:
     loaded: dict[str, dict[str, Any]] = {}
     hashes: dict[str, str] = {}
@@ -416,12 +555,15 @@ def verify_all(repository_root: Path = REPOSITORY_ROOT) -> dict[str, Any]:
         loaded[name] = data
         hashes[str(specification["path"])] = actual_hash
 
+    route_608, route_608_hashes = _verify_route_608(repository_root)
+    hashes.update(route_608_hashes)
     return {
         "status": "pass",
         "formal_result_sha256": hashes,
         "three_carrier_45": _verify_45(loaded["three_carrier_45"]),
         "bo04_932": _verify_932(loaded["bo04_932"]),
         "route_325": _verify_route(loaded["route_325"]),
+        "route_608_tradeoff_v2": route_608,
     }
 
 
