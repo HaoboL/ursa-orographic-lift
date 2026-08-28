@@ -12,9 +12,13 @@ outputs; they have not been shortened, rounded, or rewritten for GitHub.
 | `bo04_932/` | 932 cases, 594 terrain groups, BO04, four arms | `ursa.v01-bo04-full932-four-arm.v1` |
 | `route_325/` | 325 continuous-turn route tasks plus registered strata | `ursa.route-energy-rerun.v2` |
 
-Each directory includes the formal `result.json`, an independent `audit.json`,
-and machine resource or preparation receipts. `route_325/formula_smoke.json`
-records the formula-domain and identity-fallback smoke gate.
+Each directory includes the formal `result.json`, a same-workflow `audit.json`,
+and machine resource or preparation receipts. Historical audit field and schema
+names are retained unchanged because the receipts are hash-bound; `independent`
+in those historical identifiers means a separate implementation or aggregation
+path within the same research workflow, not an independent team, experiment, or
+reference dataset. `route_325/formula_smoke.json` records the formula-domain and
+identity-fallback smoke gate.
 
 ## Immutable formal-result hashes
 
@@ -25,8 +29,9 @@ records the formula-domain and identity-fallback smoke gate.
 | `route_325/result.json` | `d7cb09add419f9f0539e7e8d1fcd5c5ff152770ff0bdfeb1c3d2b8319eada8fd` |
 
 Run `python scripts/verify_published_results.py` from the repository root to
-validate these hashes and independently recompute all headline aggregates from
-the case rows.
+validate these hashes and separately recompute all headline aggregates from the
+case rows, including the complete-denominator route result and the descriptive
+19-changed-route energy subtotal.
 
 ## Data boundary
 

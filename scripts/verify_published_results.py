@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independently recompute URSA headline results from committed case rows."""
+"""Recompute URSA headline results from committed, unrounded case rows."""
 
 from __future__ import annotations
 
@@ -351,9 +351,19 @@ def _verify_route_summary(summary: dict[str, Any], label: str) -> dict[str, Any]
     _require(int(np.sum(changed)) == int(summary["changed_route_count"]), f"{label}.changed-route count")
     _require(int(np.sum(defined)) == int(summary["finite_case_count"]), f"{label}.finite count")
     _require(int(np.sum(~defined)) == int(summary["undefined_case_count"]), f"{label}.undefined count")
+    changed_raw_energy = float(np.sum(raw_energy[changed]))
+    changed_selected_energy = float(np.sum(selected_energy[changed]))
+    changed_net_saving = float(np.sum(delta[changed]))
+    changed_ratio = 100.0 * changed_net_saving / changed_raw_energy
     return {
         "case_count": len(rows),
         "changed_route_count": int(np.sum(changed)),
+        "changed_route": {
+            "raw_reference_energy_j": changed_raw_energy,
+            "selected_reference_energy_j": changed_selected_energy,
+            "net_saving_j": changed_net_saving,
+            "ratio_of_sums_saving_percent": changed_ratio,
+        },
         "mean_delta_energy_j": float(np.mean(delta)),
         "paired_bootstrap_ci95_j": [float(value) for value in interval],
         "ratio_of_sums_saving_percent": ratio,
@@ -366,8 +376,22 @@ def _verify_route(data: dict[str, Any]) -> dict[str, Any]:
     _require(int(data["requested_case_count"]) == 325, "route requested case count")
     _require(int(data["successful_case_count"]) == 325, "route successful case count")
     summaries = data["summaries"]["hard_exclusion"]["fuxi_w"]
+    all_325 = _verify_route_summary(summaries["all_325"], "route.all_325")
+    registered_changed = {
+        "raw_reference_energy_j": 724582.1815317523,
+        "selected_reference_energy_j": 574706.2393130724,
+        "net_saving_j": 149875.9422186797,
+        "ratio_of_sums_saving_percent": 20.684464238665786,
+    }
+    for name, expected in registered_changed.items():
+        _close(
+            all_325["changed_route"][name],
+            expected,
+            f"route.all_325.changed_route.{name}",
+            atol=1.0e-9,
+        )
     return {
-        "all_325": _verify_route_summary(summaries["all_325"], "route.all_325"),
+        "all_325": all_325,
         "raw_downstream_itt_96": _verify_route_summary(
             summaries["raw_downstream_itt_96"], "route.raw_downstream_itt_96"
         ),
@@ -388,7 +412,7 @@ def verify_all(repository_root: Path = REPOSITORY_ROOT) -> dict[str, Any]:
         data = _load_json(result_path)
         _require(data.get("schema") == specification["schema"], f"{name} schema")
         audit = _load_json(audit_path)
-        _require(audit.get("status") == "pass", f"{name} independent audit status")
+        _require(audit.get("status") == "pass", f"{name} archived audit status")
         loaded[name] = data
         hashes[str(specification["path"])] = actual_hash
 

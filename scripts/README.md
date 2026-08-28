@@ -15,6 +15,8 @@ part of this compact repository. Their presence documents the experimental
 workflow; it does not imply that third-party raw data or every local adapter is
 redistributed.
 
-The exact formal row-level outputs and independent audits produced by the final
-study workflow are under `results/`. Use those files and the portable verifier
-for a data-independent check of the paper's numerical claims.
+The exact formal row-level outputs and same-workflow audit receipts produced by
+the final study workflow are under `results/`. Use those files and the portable
+verifier for a row-level recomputation of the paper's numerical claims. This is
+a separate implementation-and-aggregation check within the same research
+workflow, not an independent team, experiment, or reference dataset.

@@ -11,9 +11,12 @@ exposure state supplies warning and accepted-support decisions; it is not a
 second velocity multiplier.
 
 This repository publishes the scientific code, an exact software environment,
-compact row-level results, independent audit receipts, and a portable result
-verifier. The journal manuscript, its Chinese translation, Supplementary
-Information, reviewer copies, and submission files are intentionally excluded.
+compact row-level results, same-workflow implementation-and-aggregation audit
+receipts, and a portable result verifier. These audit receipts and the verifier
+provide a separate recomputation within the same research workflow; they are
+not an independent team, experiment, or reference dataset. The journal
+manuscript, its Chinese translation, Supplementary Information, reviewer
+copies, and submission files are intentionally excluded.
 
 ## Published package
 
@@ -37,7 +40,14 @@ The compact results reproduce these registered comparisons without refitting:
 | 45-case transfer | identical accepted support, warning-only base to sheltering + warning | -7.41% EVVE; -10.02% BO04; -2.54% WindNinja |
 | 932-case BO04 extension | full-support / identical accepted-support MAE | -14.39% / -18.43% |
 | 932-case BO04 extension | terrain groups improved | 593/594 / 591/594 |
-| 325 route tasks | changed routes; mean reference-energy saving | 19; 461 J (paired-bootstrap 95% CI 92--940 J) |
+| 325 route tasks | route outcomes | 13 better / 306 same / 6 worse; 19 routes changed |
+| 325 route tasks | changed-route descriptive magnitude | 149.876 kJ net; 20.684% of changed raw-route energy, including all 6 unfavorable changes |
+| 325 route tasks | complete-denominator primary result | 1.398%; mean 461.157 J/task (paired-bootstrap 95% CI 92.096--939.752 J) |
+
+The changed-route statistic describes the magnitude of the policy-defined 19
+interventions. It does not replace the primary complete-denominator result,
+which retains all 325 tasks and assigns zero paired difference to the 306
+unchanged route decisions.
 
 ## Quick start
 
